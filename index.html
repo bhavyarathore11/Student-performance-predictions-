@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Prediction App</title>
+    <style>
+        body {
+            background-image: url('https://media.istockphoto.com/id/1475870499/photo/education-high-five-and-teacher-with-children-in-classroom-for-learning-support-and.jpg?s=2048x2048&w=is&k=20&c=wS7LezckoSaKJ8zZJJVaHv_eD4YuLih6Ncd4W4jAvcE=');
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2em;
+        }
+        nav {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 1em;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+        }
+        nav h2 {
+            margin-bottom: 20px;
+        }
+        nav a {
+            color: black;
+            display: block;
+            margin: 0.5em 0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            flex: 3;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+            padding: 2em;
+        }
+        .responsive {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .st-button {
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .st-button:hover {
+            background-color: #0056b3;
+        }
+        .st-success {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .st-info {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .st-warning {
+            background-color: #FFC107;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #selected-skills-container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            max-height: 200px; /* Adjust as needed */
+            overflow-y: auto;
+        }
+        
+        #selected-skills {
+            display: flex;
+            flex-direction: column;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h2>Student Performance Prediction</h2>
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('grade-prediction')">Grade Prediction</a>
+            <a href="#" onclick="showPage('company-prediction')">Company Prediction</a>
+        </nav>
+
+        <div class="content" id="home">
+            <h1>Welcome to the Student Performance Prediction App</h1>
+            <img src="https://niagaraindependent.ca/wp-content/uploads/2019/05/predicting-the-future-1024x640.jpg" class="responsive" alt="Prediction">
+            <p>This app allows you to predict a student's grade based on their marks and provides information about their placement status.</p>
+            <p>Please use the navigation bar on the left to make predictions.</p>
+        </div>
+
+        <div class="content" id="grade-prediction" style="display: none;">
+            <h1>Grade Prediction and Placement</h1>
+            <p>Enter the student's marks to predict their grade and placement:</p>
+            <input type="number" id="marks" placeholder="Marks (0-100)" min="0" max="100" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%; box-sizing: border-box;">
+            <button class="st-button" onclick="predictGrade()">Predict</button>
+            <div id="grade-result"></div>
+        </div>
+
+        <div class="content" id="company-prediction" style="display: none;">
+            <h1>Skills and Company Placement</h1>
+            <p>Enter your skills to predict your company placement:</p>
+            <select id="skills" multiple style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%; box-sizing: border-box;">
+                <option value="Python">Python</option>
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Java">Java</option>
+                <option value="C++">C++</option>
+                <option value="SQL">SQL</option>
+                <option value="HTML/CSS">HTML/CSS</option>
+                <option value="React">React</option>
+                <option value="Node.js">Node.js</option>
+                <option value="Angular">Angular</option>
+                <option value="Django">Django</option>
+                <option value="Ruby on Rails">Ruby on Rails</option>
+                <option value="Swift">Swift</option>
+                <option value="PHP">PHP</option>
+                <option value="Go">Go</option>
+                <option value="Rust">Rust</option>
+                <option value="TensorFlow">TensorFlow</option>
+                <option value="PyTorch">PyTorch</option>
+                <option value="AWS">AWS</option>
+                <option value="Docker">Docker</option>
+                <option value="Kubernetes">Kubernetes</option>
+            </select>
+            <button class="st-button" onclick="addSelectedSkill()">Add Selected Skill</button>
+            <div id="selected-skills-container">
+                <div id="selected-skills"></div>
+            </div>
+            <button class="st-button" onclick="predictCompany()">Predict Company</button>
+            <div id="company-result"></div>
+        </div>
+            <script>
+                var skillCompanyMapping = {
+                    'Python': ['Google', 'Facebook', 'Microsoft'],
+                    'JavaScript': ['Google', 'Facebook', 'Microsoft', 'Apple'],
+                    'Java': ['Google', 'Microsoft', 'Amazon'],
+                    'C++': ['Microsoft', 'Amazon', 'Intel'],
+                    'SQL': ['Oracle', 'Microsoft', 'IBM'],
+                    'HTML/CSS': ['Google', 'Facebook', 'Apple'],
+                    'React': ['Facebook', 'Amazon', 'Netflix'],
+                    'Node.js': ['Google', 'Microsoft', 'Amazon'],
+                    'Angular': ['Google', 'Microsoft', 'Apple'],
+                    'Django': ['Google', 'Facebook', 'Instagram'],
+                    'Ruby on Rails': ['Twitter', 'Shopify', 'GitHub'],
+                    'Swift': ['Apple', 'Google', 'Amazon'],
+                    'PHP': ['Facebook', 'WordPress', 'Shopify'],
+                    'Go': ['Google', 'Microsoft', 'Uber'],
+                    'Rust': ['Mozilla', 'Microsoft', 'Intel'],
+                    'TensorFlow': ['Google', 'Amazon', 'Microsoft'],
+                    'PyTorch': ['Facebook', 'Amazon', 'Microsoft'],
+                    'AWS': ['Amazon', 'Google', 'Microsoft'],
+                    'Docker': ['Docker', 'Microsoft', 'Amazon'],
+                    'Kubernetes': ['Google', 'Microsoft', 'Amazon']
+                };
+            
+                function showPage(pageId) {
+                    var pages = document.querySelectorAll('.content');
+                    for (var i = 0; i < pages.length; i++) {
+                        pages[i].style.display = 'none';
+                    }
+                    document.getElementById(pageId).style.display = 'block';
+                }
+            
+                function predictGrade() {
+                    var marks = document.getElementById('marks').value;
+                    var gradeResult = document.getElementById('grade-result');
+                    gradeResult.innerHTML = '';
+            
+                    if (marks >= 0 && marks <= 100) {
+                        var grade;
+                        var placement;
+            
+                        if (marks >= 90) {
+                            grade = 'A';
+                            placement = 'Placed';
+                        } else if (marks >= 80) {
+                            grade = 'B';
+                            placement = 'Placed';
+                        } else if (marks >= 70) {
+                            grade = 'C';
+                            placement = 'Placed';
+                        } else if (marks >= 60) {
+                            grade = 'D';
+                            placement = 'Not Placed';
+                        } else {
+                            grade = 'F';
+                            placement = 'Not Placed';
+                        }
+            
+                        gradeResult.innerHTML += '<div class="st-success">Predicted Grade: ' + grade + '</div>';
+                        gradeResult.innerHTML += '<div class="st-success">Placement Status: ' + placement + ' ' + (placement === 'Placed' ? '😊' : '😞') + '</div>';
+            
+                        if (placement === 'Placed' && (grade === 'A' || grade === 'B')) {
+                            gradeResult.innerHTML += '<div class="st-success">Congratulations! You are likely to be placed in a good company.</div>';
+                        } else {
+                            gradeResult.innerHTML += '<div class="st-warning">Your placement might be affected. Please work harder.</div>';
+                        }
+                    } else {
+                        gradeResult.innerHTML += '<div class="st-warning">Please enter a valid mark between 0 and 100.</div>';
+                    }
+                }
+            
+                function predictCompany() {
+                    var selectedSkills = document.getElementById('skills').selectedOptions;
+                    var companyResult = document.getElementById('company-result');
+                    companyResult.innerHTML = '';
+            
+                    if (selectedSkills.length > 0) {
+                        var predictedCompanies = [];
+            
+                        for (var i = 0; i < selectedSkills.length; i++) {
+                            var skill = selectedSkills[i].value;
+                            if (skill in skillCompanyMapping) {
+                                predictedCompanies = predictedCompanies.concat(skillCompanyMapping[skill]);
+                            }
+                        }
+            
+                        if (predictedCompanies.length > 0) {
+                            companyResult.innerHTML = '<div class="st-success">Predicted Companies: ' + predictedCompanies.join(', ') + '</div>';
+                        } else {
+                            companyResult.innerHTML = '<div class="st-warning">No companies found for your selected skills.</div>';
+                        }
+                    } else {
+                        companyResult.innerHTML = '<div class="st-warning">Please select at least one skill.</div>';
+                    }
+                }
+                function addSelectedSkill() {
+                    var skillsSelect = document.getElementById('skills');
+                    var selectedSkillsContainer = document.getElementById('selected-skills');
+                    var selectedOptions = skillsSelect.selectedOptions;
+                
+                    for (var i = 0; i < selectedOptions.length; i++) {
+                        var skill = selectedOptions[i].value;
+                        var skillElement = document.createElement('div');
+                        skillElement.textContent = skill;
+                        selectedSkillsContainer.appendChild(skillElement);
+                    }
+                }
+            </script>
