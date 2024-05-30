@@ -478,6 +478,17 @@ nav a {
                 var skillElement = document.createElement('div');
                 skillElement.textContent = skill;
                 selectedSkillsContainer.appendChild(skillElement);
+                var removeButton = document.createElement('span');
+         removeButton.innerHTML = '×';
+         removeButton.style.cursor = 'pointer';
+         removeButton.style.marginLeft = '5px';
+         removeButton.onclick = function() {
+             skillElement.remove();
+         };
+         skillElement.appendChild(removeButton);
+ 
+         // Append the skill element to the selected skills section
+         document.getElementById('selected-skills').appendChild(skillElement);
             }
         }
 
