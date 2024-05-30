@@ -6,9 +6,7 @@
     <title>Student Performance Prediction App</title>
     <style>
         body {
-            background-image: url('https://static.vecteezy.com/system/resources/previews/003/323/638/non_2x/flat-teachers-day-background-free-vector.jpg');
-            background-size: cover;
-            background-attachment: fixed;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/010/514/729/non_2x/back-to-school-background-free-vector.jpg');
             background-color: #f3f3f3;
             font-family: Arial, sans-serif;
             margin: 0;
@@ -51,6 +49,41 @@
             border-radius: 15px;
             box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
             padding: 2em;
+            min-height: 500px; /* Ensure there's enough space to show the background image */
+        }
+        .home {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/003/249/455/non_2x/teacher-s-day-cartoon-background-free-vector.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .highlight {
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+        }
+    
+        .grade-prediction {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/003/323/638/non_2x/flat-teachers-day-background-free-vector.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .highlight {
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+        }
+        .company-prediction {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/003/323/638/non_2x/flat-teachers-day-background-free-vector.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .highlight {
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
         }
         .responsive {
             max-width: 100%;
@@ -107,7 +140,153 @@
             display: flex;
             flex-direction: column;
         }
-        
+
+        /* Fade-in animation for content sections */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.content {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Button hover effect */
+.st-button {
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.st-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Highlight bar animation */
+.highlight {
+    display: inline-block;
+    position: relative;
+    animation: highlightBar 1s ease-in-out forwards;
+}
+
+@keyframes highlightBar {
+    from {
+        background-size: 100% 0;
+    }
+    to {
+        background-size: 100% 100%;
+    }
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5px;
+    width: 100%;
+    background-color: yellow;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: growBar 1s ease-in-out forwards;
+}
+
+@keyframes growBar {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+/* Basic styles for the navigation bar */
+nav a {
+    color: black;
+    display: block;
+    margin: 0.5em 0;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Pop animation on hover */
+nav a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    animation: pop 0.3s forwards;
+}
+
+/* Keyframe animation for the pop effect */
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+nav {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 1em;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+nav h2 {
+    margin-bottom: 20px;
+}
+
+nav img.avatar {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-top: auto;
+}
+
+nav a {
+    color: black;
+    display: block;
+    margin: 0.5em 0;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Pop animation on hover */
+nav a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    animation: pop 0.3s forwards;
+}
+
+/* Keyframe animation for the pop effect */
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
     </style>
 </head>
 <body>
@@ -117,28 +296,27 @@
             <a href="#" onclick="showPage('home')">Home</a>
             <a href="#" onclick="showPage('grade-prediction')">Grade Prediction</a>
             <a href="#" onclick="showPage('company-prediction')">Company Prediction</a>
+            <img src="https://png.pngtree.com/png-vector/20230914/ourmid/pngtree-stylized-3d-character-doing-endorsement-pose-png-image_9236431.png" alt="Avatar" class="avatar">
         </nav>
 
-        <div class="content" id="home">
-            <h1>Welcome to the Student Performance Prediction App</h1>
+        <div class="content home" id="home">
+            <h1 class="highlight">Welcome to the Student Performance Prediction App</h1>
             <img src="https://niagaraindependent.ca/wp-content/uploads/2019/05/predicting-the-future-1024x640.jpg" class="responsive" alt="Prediction">
             <p>This app allows you to predict a student's grade based on their marks and provides information about their placement status.</p>
             <p>Please use the navigation bar on the left to make predictions.</p>
         </div>
-
-        <div class="content" id="grade-prediction" style="display: none;">
-            <h1>Grade Prediction and Placement</h1>
+        <div class="content grade-prediction" id="grade-prediction" style="display: none;">
+            <h1 class= "highlight">Grade Prediction and Placement</h1>
             <p>Enter the student's marks to predict their grade and placement:</p>
             <input type="number" id="marks" placeholder="Marks (0-100)" min="0" max="100" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%; box-sizing: border-box;">
             <button class="st-button" onclick="predictGrade()">Predict</button>
             <div id="grade-result"></div>
         </div>
 
-        <div class="content" id="company-prediction" style="display: none;">
-            <h1>Skills and Company Placement</h1>
+        <div class="content company-prediction" id="company-prediction" style="display: none;">
+            <h1 class= "highlight">Skills and Company Placement</h1>
             <p>Enter your skills to predict your company placement:</p>
             <select id="skills" multiple style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%; box-sizing: border-box;">
-                <option value="Python">Python</option>
                 <option value="Python">Python</option>
                 <option value="JavaScript">JavaScript</option>
                 <option value="Java">Java</option>
@@ -167,111 +345,116 @@
             <button class="st-button" onclick="predictCompany()">Predict Company</button>
             <div id="company-result"></div>
         </div>
-            <script>
-                var skillCompanyMapping = {
-                    'Python': ['Google', 'Facebook', 'Microsoft'],
-                    'JavaScript': ['Google', 'Facebook', 'Microsoft', 'Apple'],
-                    'Java': ['Google', 'Microsoft', 'Amazon'],
-                    'C++': ['Microsoft', 'Amazon', 'Intel'],
-                    'SQL': ['Oracle', 'Microsoft', 'IBM'],
-                    'HTML/CSS': ['Google', 'Facebook', 'Apple'],
-                    'React': ['Facebook', 'Amazon', 'Netflix'],
-                    'Node.js': ['Google', 'Microsoft', 'Amazon'],
-                    'Angular': ['Google', 'Microsoft', 'Apple'],
-                    'Django': ['Google', 'Facebook', 'Instagram'],
-                    'Ruby on Rails': ['Twitter', 'Shopify', 'GitHub'],
-                    'Swift': ['Apple', 'Google', 'Amazon'],
-                    'PHP': ['Facebook', 'WordPress', 'Shopify'],
-                    'Go': ['Google', 'Microsoft', 'Uber'],
-                    'Rust': ['Mozilla', 'Microsoft', 'Intel'],
-                    'TensorFlow': ['Google', 'Amazon', 'Microsoft'],
-                    'PyTorch': ['Facebook', 'Amazon', 'Microsoft'],
-                    'AWS': ['Amazon', 'Google', 'Microsoft'],
-                    'Docker': ['Docker', 'Microsoft', 'Amazon'],
-                    'Kubernetes': ['Google', 'Microsoft', 'Amazon']
-                };
-            
-                function showPage(pageId) {
-                    var pages = document.querySelectorAll('.content');
-                    for (var i = 0; i < pages.length; i++) {
-                        pages[i].style.display = 'none';
-                    }
-                    document.getElementById(pageId).style.display = 'block';
+    </div>
+
+    <script>
+        var skillCompanyMapping = {
+            'Python': ['Google', 'Facebook', 'Microsoft'],
+            'JavaScript': ['Google', 'Facebook', 'Microsoft', 'Apple'],
+            'Java': ['Google', 'Microsoft', 'Amazon'],
+            'C++': ['Microsoft', 'Amazon', 'Intel'],
+            'SQL': ['Oracle', 'Microsoft', 'IBM'],
+            'HTML/CSS': ['Google', 'Facebook', 'Apple'],
+            'React': ['Facebook', 'Amazon', 'Netflix'],
+            'Node.js': ['Google', 'Microsoft', 'Amazon'],
+            'Angular': ['Google', 'Microsoft', 'Apple'],
+            'Django': ['Google', 'Facebook', 'Instagram'],
+            'Ruby on Rails': ['Twitter', 'Shopify', 'GitHub'],
+            'Swift': ['Apple', 'Google', 'Amazon'],
+            'PHP': ['Facebook', 'WordPress', 'Shopify'],
+            'Go': ['Google', 'Microsoft', 'Uber'],
+            'Rust': ['Mozilla', 'Microsoft', 'Intel'],
+            'TensorFlow': ['Google', 'Amazon', 'Microsoft'],
+            'PyTorch': ['Facebook', 'Amazon', 'Microsoft'],
+            'AWS': ['Amazon', 'Google', 'Microsoft'],
+            'Docker': ['Docker', 'Microsoft', 'Amazon'],
+            'Kubernetes': ['Google', 'Microsoft', 'Amazon']
+        };
+    
+        function showPage(pageId) {
+            var pages = document.querySelectorAll('.content');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].style.display = 'none';
+            }
+            document.getElementById(pageId).style.display = 'block';
+        }
+    
+        function predictGrade() {
+            var marks = document.getElementById('marks').value;
+            var gradeResult = document.getElementById('grade-result');
+            gradeResult.innerHTML = '';
+    
+            if (marks >= 0 && marks <= 100) {
+                var grade;
+                var placement;
+    
+                if (marks >= 90) {
+                    grade = 'A';
+                    placement = 'Placed';
+                } else if (marks >= 80) {
+                    grade = 'B';
+                    placement = 'Placed';
+                } else if (marks >= 70) {
+                    grade = 'C';
+                    placement = 'Placed';
+                } else if (marks >= 60) {
+                    grade = 'D';
+                    placement = 'Not Placed';
+                } else {
+                    grade = 'F';
+                    placement = 'Not Placed';
                 }
-            
-                function predictGrade() {
-                    var marks = document.getElementById('marks').value;
-                    var gradeResult = document.getElementById('grade-result');
-                    gradeResult.innerHTML = '';
-            
-                    if (marks >= 0 && marks <= 100) {
-                        var grade;
-                        var placement;
-            
-                        if (marks >= 90) {
-                            grade = 'A';
-                            placement = 'Placed';
-                        } else if (marks >= 80) {
-                            grade = 'B';
-                            placement = 'Placed';
-                        } else if (marks >= 70) {
-                            grade = 'C';
-                            placement = 'Placed';
-                        } else if (marks >= 60) {
-                            grade = 'D';
-                            placement = 'Not Placed';
-                        } else {
-                            grade = 'F';
-                            placement = 'Not Placed';
-                        }
-            
-                        gradeResult.innerHTML += '<div class="st-success">Predicted Grade: ' + grade + '</div>';
-                        gradeResult.innerHTML += '<div class="st-success">Placement Status: ' + placement + ' ' + (placement === 'Placed' ? '😊' : '😞') + '</div>';
-            
-                        if (placement === 'Placed' && (grade === 'A' || grade === 'B')) {
-                            gradeResult.innerHTML += '<div class="st-success">Congratulations! You are likely to be placed in a good company.</div>';
-                        } else {
-                            gradeResult.innerHTML += '<div class="st-warning">Your placement might be affected. Please work harder.</div>';
-                        }
-                    } else {
-                        gradeResult.innerHTML += '<div class="st-warning">Please enter a valid mark between 0 and 100.</div>';
-                    }
+    
+                gradeResult.innerHTML += '<div class="st-success">Predicted Grade: ' + grade + '</div>';
+                gradeResult.innerHTML += '<div class="st-success">Placement Status: ' + placement + ' ' + (placement === 'Placed' ? '😊' : '😞') + '</div>';
+    
+                if (placement === 'Placed' && (grade === 'A' || grade === 'B')) {
+                    gradeResult.innerHTML += '<div class="st-success">Congratulations! You are likely to be placed in a good company.</div>';
+                } else {
+                    gradeResult.innerHTML += '<div class="st-warning">Your placement might be affected. Please work harder.</div>';
                 }
-            
-                function predictCompany() {
-                    var selectedSkills = document.getElementById('skills').selectedOptions;
-                    var companyResult = document.getElementById('company-result');
-                    companyResult.innerHTML = '';
-            
-                    if (selectedSkills.length > 0) {
-                        var predictedCompanies = [];
-            
-                        for (var i = 0; i < selectedSkills.length; i++) {
-                            var skill = selectedSkills[i].value;
-                            if (skill in skillCompanyMapping) {
-                                predictedCompanies = predictedCompanies.concat(skillCompanyMapping[skill]);
-                            }
-                        }
-            
-                        if (predictedCompanies.length > 0) {
-                            companyResult.innerHTML = '<div class="st-success">Predicted Companies: ' + predictedCompanies.join(', ') + '</div>';
-                        } else {
-                            companyResult.innerHTML = '<div class="st-warning">No companies found for your selected skills.</div>';
-                        }
-                    } else {
-                        companyResult.innerHTML = '<div class="st-warning">Please select at least one skill.</div>';
+            } else {
+                gradeResult.innerHTML += '<div class="st-warning">Please enter a valid mark between 0 and 100.</div>';
+            }
+        }
+    
+        function predictCompany() {
+            var selectedSkills = document.getElementById('skills').selectedOptions;
+            var companyResult = document.getElementById('company-result');
+            companyResult.innerHTML = '';
+    
+            if (selectedSkills.length > 0) {
+                var predictedCompanies = [];
+    
+                for (var i = 0; i < selectedSkills.length; i++) {
+                    var skill = selectedSkills[i].value;
+                    if (skill in skillCompanyMapping) {
+                        predictedCompanies = predictedCompanies.concat(skillCompanyMapping[skill]);
                     }
                 }
-                function addSelectedSkill() {
-                    var skillsSelect = document.getElementById('skills');
-                    var selectedSkillsContainer = document.getElementById('selected-skills');
-                    var selectedOptions = skillsSelect.selectedOptions;
-                
-                    for (var i = 0; i < selectedOptions.length; i++) {
-                        var skill = selectedOptions[i].value;
-                        var skillElement = document.createElement('div');
-                        skillElement.textContent = skill;
-                        selectedSkillsContainer.appendChild(skillElement);
-                    }
+    
+                if (predictedCompanies.length > 0) {
+                    companyResult.innerHTML = '<div class="st-success">Predicted Companies: ' + predictedCompanies.join(', ') + '</div>';
+                } else {
+                    companyResult.innerHTML = '<div class="st-warning">No companies found for your selected skills.</div>';
                 }
-            </script>
+            } else {
+                companyResult.innerHTML = '<div class="st-warning">Please select at least one skill.</div>';
+            }
+        }
+        function addSelectedSkill() {
+            var skillsSelect = document.getElementById('skills');
+            var selectedSkillsContainer = document.getElementById('selected-skills');
+            var selectedOptions = skillsSelect.selectedOptions;
+        
+            for (var i = 0; i < selectedOptions.length; i++) {
+                var skill = selectedOptions[i].value;
+                var skillElement = document.createElement('div');
+                skillElement.textContent = skill;
+                selectedSkillsContainer.appendChild(skillElement);
+            }
+        }
+
+    </script>
+</body>
+</html>
